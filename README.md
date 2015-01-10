@@ -1,5 +1,5 @@
 # Sublime Indent and braces
-Sublime text 3 plugin to indent selection and wrap it in braces
+Sublime text 3 plugin to indent selection and wrap it in braces. Useful to add if () statements for example.
 
 ![Alt text](http://fat.gfycat.com/HelpfulFittingCrownofthornsstarfish.gif)
 
