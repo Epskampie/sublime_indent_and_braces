@@ -23,9 +23,6 @@ class IndentAndBracesCommand(sublime_plugin.TextCommand):
             else:
                 region = sublime.Region(self.view.line(r.begin()).begin(), self.view.line(r.end()).end())
             
-            # sel.clear()
-            # sel.add(region)
-            
             indent = get_indentation_on_line(self.view, region.begin())
             if from_cursor:
                 insert_start = "{"
@@ -43,8 +40,11 @@ class IndentAndBracesCommand(sublime_plugin.TextCommand):
             self.view.sel().add(indent_region)
             self.view.run_command('indent')
             
-            # Move cursor to beyond last brace
             sel.clear()
             settings = self.view.settings()
-            pt = region.end() + len(insert_start) + len(insert_end) + num_lines_indented * (settings.get('tab_size') if settings.get('translate_tabs_to_spaces') else 1)
+            if from_cursor:
+                # Move cursor to beyond last brace
+                pt = region.end() + len(insert_start) + len(insert_end) + num_lines_indented * (settings.get('tab_size') if settings.get('translate_tabs_to_spaces') else 1)
+            else:
+                pt = region.begin() + len(indent)
             sel.add(sublime.Region(pt, pt))
