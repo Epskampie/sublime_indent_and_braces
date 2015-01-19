@@ -10,6 +10,7 @@ Installation
 * Press ctr+shift+p -> install package -> indent and braces
 * Add the following shortcut to your keybindings (customize keys as desired)
 
-
-    { "keys": ["ctrl+i"], "command": "indent_and_braces", "args": { "from_cursor": true} },
-    { "keys": ["ctrl+j"], "command": "indent_and_braces", "args": { "from_cursor": false} },
+````
+{ "keys": ["ctrl+i"], "command": "indent_and_braces", "args": { "from_cursor": true} },
+{ "keys": ["ctrl+j"], "command": "indent_and_braces", "args": { "from_cursor": false} },
+`````
