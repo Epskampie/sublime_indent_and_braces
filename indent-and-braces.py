@@ -15,9 +15,13 @@ def get_indentation_on_line(view, point):
     return result
 
 class IndentAndBracesCommand(sublime_plugin.TextCommand):
-    def run(self, edit, from_cursor = False):
+    def run(self, edit, from_cursor = None, opening_brace = '{', closing_brace = '}'):
         sel = self.view.sel()
         for r in tuple(reversed(sel)):
+            if from_cursor == None:
+                # from_cursor not set, determine it intelligently
+                from_cursor = (r.begin() == self.view.line(r.begin()).end())
+                
             if from_cursor:
                 region = sublime.Region(r.begin(), self.view.line(r.end()).end())
             else:
@@ -25,10 +29,10 @@ class IndentAndBracesCommand(sublime_plugin.TextCommand):
             
             indent = get_indentation_on_line(self.view, region.begin())
             if from_cursor:
-                insert_start = "{"
+                insert_start = opening_brace
             else:
-                insert_start = indent + "{\n"
-            insert_end = '\n' + indent + '}'
+                insert_start = indent + opening_brace + "\n"
+            insert_end = '\n' + indent + closing_brace
             
             self.view.insert(edit, region.begin(), insert_start)
             self.view.insert(edit, region.end() + len(insert_start), insert_end)
