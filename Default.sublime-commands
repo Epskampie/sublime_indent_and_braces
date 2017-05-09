@@ -1,5 +1,5 @@
 [
   { "caption": "Indent and braces: Automatically embrace selection", "command": "indent_and_braces" },
-  { "caption": "Indent and braces: Embrace with brackes", "command": "indent_and_braces", "args": { "opening_brace": "[", "closing_brace": "]" } },
+  { "caption": "Indent and braces: Embrace with brackets", "command": "indent_and_braces", "args": { "opening_brace": "[", "closing_brace": "]" } },
   { "caption": "Indent and braces: Force from new line", "command": "indent_and_braces", "args": { "from_cursor": false} },
 ]
